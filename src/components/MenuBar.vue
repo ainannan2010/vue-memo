@@ -9,16 +9,42 @@
       </div>
     </div>
     <div class="caozuoBox">
-      <div class="newBox"></div>
-      <div class="allBox"></div>
+      <el-dropdown class="newBox" placement='bottom'>
+        <el-button>
+          更多菜单
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </el-button>
+        <el-dropdown-menu @click.native="showEditor">
+          <el-dropdown-item>新建备忘录</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+
+      <el-dropdown class="allBox" placement='bottom'>
+        <el-button>
+          全部菜单
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </el-button>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>工作</el-dropdown-item>
+          <el-dropdown-item>生活</el-dropdown-item>
+          <el-dropdown-item>学习</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import ItemList from './ItemList copy.vue'
+import ItemDta from '@/model/ItemData'
 
 @Component
-export default class MenuBar extends Vue {}
+export default class MenuBar extends Vue {
+  showEditor() {
+    let newItem = new ItemDta(-1, 0)
+    this.$store.commit('showEditor',newItem)
+  }
+}
 </script>
 
 <style lang="less">
@@ -55,14 +81,10 @@ export default class MenuBar extends Vue {}
     align-items: center;
     .newBox {
       width: 150px;
-      height: 50px;
-      background: yellow;
     }
 
     .allBox {
       width: 150px;
-      height: 50px;
-      background: red;
     }
   }
 }

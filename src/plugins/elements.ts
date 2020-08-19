@@ -28,6 +28,9 @@ import {
   Popconfirm,
   Popover,
   MessageBox,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem
 } from 'element-ui'
 
 const element = [
@@ -56,7 +59,10 @@ const element = [
   Pagination,
   Dialog,
   Popconfirm,
-  Popover
+  Popover,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem
 ]
 
 element.map(item => Vue.use(item))

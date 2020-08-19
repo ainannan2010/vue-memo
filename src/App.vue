@@ -1,8 +1,11 @@
 <template>
   <div id="app">
+    <!-- 操作区 -->
     <Menubar />
+    <!-- 主体区 -->
     <ItemList />
-    <MemoEditor />
+    <!-- 新建编辑弹框 -->
+    <MemoEditor v-if="$store.state.isShow" />
   </div>
 </template>
 
@@ -16,7 +19,7 @@ import MemoEditor from './components/MemoEditor.vue'
   components: {
     Menubar,
     ItemList,
-    MemoEditor
+    MemoEditor,
   },
 })
 export default class App extends Vue {}

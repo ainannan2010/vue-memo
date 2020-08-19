@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="form">
+  <el-form :model="memo">
     <el-dialog
       :visible.sync="$store.state.isShow"
       custom-class="el-dialog-dev"
@@ -8,20 +8,20 @@
     >
       <div slot="title" class="header">
         <el-form-item class="el-form-item-dev-input" size="medium">
-          <el-input v-model="form.name" autocomplete="off"></el-input>
+          <el-input v-model="memo.title" autocomplete="off" placeholder="title"></el-input>
         </el-form-item>
 
         <el-form-item class="el-form-item-dev-select" size="medium">
-          <el-select v-model="form.category" placeholder="请选择活动区域">
+          <el-select v-model="memo.categoryId" placeholder="category">
             <el-option label="工作" :value="0"></el-option>
             <el-option label="生活" :value="1"></el-option>
             <el-option label="学习" :value="2"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item class="el-form-item-dev-save">
+        <el-form-item class="el-form-item-dev-save" @click.native="save">
           <i class="el-icon-s-claim"></i>
         </el-form-item>
-        <el-form-item class="el-form-item-dev-save">
+        <el-form-item class="el-form-item-dev-save" @click.native="colseEditor">
           <i class="el-icon-circle-close"></i>
         </el-form-item>
       </div>
@@ -29,9 +29,10 @@
       <el-form-item size="medium">
         <el-input
           type="textarea"
-          v-model="form.content"
+          v-model="memo.content"
           :resize="'none'"
           :autosize="{ minRows: 13, maxRows: 13 }"
+          placeholder="content"
         ></el-input>
       </el-form-item>
     </el-dialog>
@@ -40,16 +41,40 @@
 
 <script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Message } from 'element-ui'
 import ItemData from '../model/ItemData'
 
+@Component
 export default class MemoEditor extends Vue {
   memo!: ItemData
-  form: object = {
-    name: '123',
-    category: 0,
-    content: '123w',
+  // 生命周期
+  created() {
+    this.memo = this.$store.state.transMemo
   }
-  dialogWidth: string = '600px'
+
+  colseEditor = () => {
+    this.$store.state.isShow = false
+  }
+
+  save() {
+    if (
+      !this.memo ||
+      !this.memo.title.trim().length ||
+      this.memo.categoryId <= -1 ||
+      !this.memo.content.trim().length
+    ) {
+      Message.warning('对不起，输入错误')
+      return
+    }
+
+    if (this.memo.id <= -1) {
+      this.$store.state.ahelper.add(this.memo)
+    } else {
+      this.$store.state.ahelper.edit(this.memo)
+    }
+
+    this.colseEditor()
+  }
 }
 </script>
 

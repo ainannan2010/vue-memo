@@ -3,8 +3,12 @@
     <div class="header">
       <div class="title">{{memo.title}}</div>
       <div class="tool">
-        <div class="edit"><i class="el-icon-edit"></i></div>
-        <div class="delete" @click="doDel(memo.id, memo.title)"><i class="el-icon-delete"></i></div>
+        <div class="edit" @click="doEdit(memo)">
+          <i class="el-icon-edit"></i>
+        </div>
+        <div class="delete" @click="doDel(memo.id, memo.title)">
+          <i class="el-icon-delete"></i>
+        </div>
       </div>
     </div>
     <div class="info">
@@ -24,11 +28,18 @@ export default class MemoItem extends Vue {
 
   // 删除笔记
   doDel(id: number, title: string): void {
-    if(!window.confirm(`你确定删除【${title}】吗？`)) {
+    if (!window.confirm(`你确定删除【${title}】吗？`)) {
       return
     }
 
     this.$store.state.ahelper.remove(id)
+  }
+
+  // 编辑笔记
+  doEdit(item: ItemData) {
+     // 避免数据双向绑定没等提交页面的值就改变
+    let newItem = JSON.parse(JSON.stringify(item))
+    this.$store.commit('showEditor', newItem)
   }
 }
 </script>
