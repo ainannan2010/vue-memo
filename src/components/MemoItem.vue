@@ -37,29 +37,30 @@ export default class MemoItem extends Vue {
 
   // 编辑笔记
   doEdit(item: ItemData) {
-     // 避免数据双向绑定没等提交页面的值就改变
+    // 避免数据双向绑定没等提交页面的值就改变
     let newItem = JSON.parse(JSON.stringify(item))
     this.$store.commit('showEditor', newItem)
   }
 }
 </script>
 
-<style lang="less">
-@width: 300px;
+<style lang="less" scoped>
+@width: 360px;
 .memoBox {
   width: @width;
+  padding: 10px;
   height: @width*0.75;
-  background-color: gold;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 2px;
   box-shadow: 1px 1px 3px 3px #000;
-  padding: 10px;
   border: 1px solid #eee;
   margin: 10px;
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #fff;
+    padding-bottom: 3px;
+    border-bottom: 2px solid #999;
     .title {
       flex: 1;
       padding-right: 5px;
@@ -86,6 +87,8 @@ export default class MemoItem extends Vue {
     display: flex;
     align-items: center;
     color: #888;
+    margin: 3px 0;
+    justify-content: space-between;
     .time {
       margin-right: 10px;
     }

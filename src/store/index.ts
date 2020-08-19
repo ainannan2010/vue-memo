@@ -10,7 +10,8 @@ const store = new Vuex.Store({
     title: "我是黑马, who flies",
     isShow: false,
     transMemo: null, // 副本
-    ahelper: new ActionHelper()
+    ahelper: new ActionHelper(),
+    filterCategory: -1
   },
   mutations: {
     showEditor(state, payload) {

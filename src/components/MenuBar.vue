@@ -9,9 +9,9 @@
       </div>
     </div>
     <div class="caozuoBox">
-      <el-dropdown class="newBox" placement='bottom'>
+      <el-dropdown class="newBox" placement="bottom">
         <el-button>
-          更多菜单
+          新建
           <i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
         <el-dropdown-menu @click.native="showEditor">
@@ -19,15 +19,29 @@
         </el-dropdown-menu>
       </el-dropdown>
 
-      <el-dropdown class="allBox" placement='bottom'>
+      <el-dropdown class="allBox" placement="bottom">
         <el-button>
-          全部菜单
+          全部
+          <span class="count">{{getCount(-1)}}</span>
           <i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>工作</el-dropdown-item>
-          <el-dropdown-item>生活</el-dropdown-item>
-          <el-dropdown-item>学习</el-dropdown-item>
+          <el-dropdown-item @click.native="doFilter(-1)">
+            全部
+            <span class="count">{{getCount(-1)}}</span>
+          </el-dropdown-item>
+          <el-dropdown-item @click.native="doFilter(cateEnum.Work)">
+            工作
+            <span class="count">{{getCount(cateEnum.Work)}}</span>
+          </el-dropdown-item>
+          <el-dropdown-item @click.native="doFilter(cateEnum.Life)">
+            生活
+            <span class="count">{{getCount(cateEnum.Life)}}</span>
+          </el-dropdown-item>
+          <el-dropdown-item @click.native="doFilter(cateEnum.Study)">
+            学习
+            <span class="count">{{getCount(cateEnum.Study)}}</span>
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -36,18 +50,34 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import ItemList from './ItemList copy.vue'
-import ItemDta from '@/model/ItemData'
+import ItemData from '@/model/ItemData'
+import CateEnum from '@/model/CateEnum'
 
 @Component
 export default class MenuBar extends Vue {
+  cateEnum = CateEnum
   showEditor() {
-    let newItem = new ItemDta(-1, 0)
-    this.$store.commit('showEditor',newItem)
+    let newItem = new ItemData(-1, 0)
+    this.$store.commit('showEditor', newItem)
+  }
+
+  getCount(num: number) {
+    if (num === -1) {
+      return this.$store.state.ahelper.memoList.length
+    }
+
+    return this.$store.state.ahelper.memoList.filter(
+      (elt: any) => elt.categoryId === num
+    ).length
+  }
+
+  doFilter(cateId: number) {
+    this.$store.state.filterCategory = cateId
   }
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .navBox {
   height: 60px;
   display: flex;
@@ -87,5 +117,12 @@ export default class MenuBar extends Vue {
       width: 150px;
     }
   }
+}
+.count {
+  border: 1px solid;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: #aaa;
+  color: #fff;
 }
 </style>

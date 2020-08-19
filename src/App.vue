@@ -25,15 +25,18 @@ import MemoEditor from './components/MemoEditor.vue'
 export default class App extends Vue {}
 </script>
 
-<style>
+<style lang="less" scoped>
+@width: 1250px;
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
-  width: 1250px;
-  margin: 0 auto;
-  background: yellow;
+  width: @width;
+  height: @width*0.6;
+  margin: 0 auto 40px;
+  background: url(./assets/zhouyu.jpg);
+  overflow-y: scroll;
+  box-shadow: 1px 1px 13px 5px #b7b75a;
 }
 </style>
