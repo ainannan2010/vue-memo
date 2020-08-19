@@ -1,11 +1,6 @@
 <template>
   <el-form :model="memo">
-    <el-dialog
-      :visible.sync="$store.state.isShow"
-      custom-class="el-dialog-dev"
-      :height="'330px'"
-      :show-close="false"
-    >
+    <el-dialog :visible.sync="$store.state.isShow" custom-class="el-dialog-dev" :show-close="false">
       <div slot="title" class="header">
         <el-form-item class="el-form-item-dev-input" size="medium">
           <el-input v-model="memo.title" autocomplete="off" placeholder="title"></el-input>
@@ -89,6 +84,8 @@ export default class MemoEditor extends Vue {
 .el-dialog__body {
   padding: 0 10px;
 }
+
+
 .el-form-item {
   margin-bottom: 0px;
 }
@@ -97,12 +94,12 @@ export default class MemoEditor extends Vue {
   display: flex;
   align-items: center;
   .el-form-item-dev-input {
-    width: 420px;
+    width: 400px;
     margin-right: 10px;
   }
 
   .el-form-item-dev-select {
-    width: 80px;
+    width: 100px;
   }
 
   .el-icon-s-claim,

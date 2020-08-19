@@ -30,7 +30,8 @@ import {
   MessageBox,
   Dropdown,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Tag
 } from 'element-ui'
 
 const element = [
@@ -62,7 +63,8 @@ const element = [
   Popover,
   Dropdown,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Tag
 ]
 
 element.map(item => Vue.use(item))
