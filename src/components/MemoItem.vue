@@ -3,8 +3,8 @@
     <div class="header">
       <div class="title">{{memo.title}}</div>
       <div class="tool">
-        <div class="edit">edit</div>
-        <div class="delete" @click="doDel(memo.id, memo.title)">X</div>
+        <div class="edit"><i class="el-icon-edit"></i></div>
+        <div class="delete" @click="doDel(memo.id, memo.title)"><i class="el-icon-delete"></i></div>
       </div>
     </div>
     <div class="info">

@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import {
   Button,
+  Select,
+  Option,
   Form,
   FormItem,
   Input,
@@ -25,11 +27,13 @@ import {
   Dialog,
   Popconfirm,
   Popover,
-  MessageBox
+  MessageBox,
 } from 'element-ui'
 
 const element = [
   Button,
+  Select,
+  Option,
   Form,
   FormItem,
   Input,
