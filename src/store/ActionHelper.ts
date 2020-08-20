@@ -23,6 +23,7 @@ class ActionHelper {
       item.categoryId = elt.categoryId;
       item.title = elt.title;
       item.content = elt.content;
+      item.createTime = elt.createTime
       return item;
     });
 
@@ -37,6 +38,7 @@ class ActionHelper {
     item.id = this.dataHelper.addData(item);
     // 将笔记加入笔记数组中
     this.memoList.push(item);
+    // 更新到本地缓存
     this.dataHelper.saveData(this.memoList);
 
     return item.id;

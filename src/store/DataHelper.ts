@@ -1,7 +1,7 @@
 /**
  * DatahHelper类，负责localStorage 操作
  */
-import ItemData from '../model/ItemData'
+import ItemData from "../model/ItemData";
 
 class DataHelper {
   dataKey: string;
@@ -10,15 +10,8 @@ class DataHelper {
   constructor(dtkey: string, pmkey: string) {
     this.dataKey = dtkey;
     this.primaryKey = pmkey;
-    this.init()
   }
 
-  init() {
-    let data = this.readData()
-    if (!data.length) {
-      // this.addData('厉害了，老歌')
-    }
-  }
   // 读取数据**********
   readData(): any {
     // 1. 读取本地数据（根据dataKey）
@@ -29,13 +22,12 @@ class DataHelper {
     if (jsonData) {
       arrData = JSON.parse(jsonData);
     }
-
     // 3. 返回js对象
     return arrData;
   }
 
   // 保存数据**********
-  saveData(arrData: Array<Object>): void {
+  saveData(arrData: Array<ItemData>): void {
     // 1. 将js数组对象转换为json数组对象
     let jsonStr = JSON.stringify(arrData);
     // 2. 将json 数组对象存入localStorage中
@@ -43,24 +35,11 @@ class DataHelper {
   }
 
   // 新增数据**********
-  addData(item: object) {
+  addData(item: ItemData) {
     // 读取本地数据
     let arr: any = this.readData();
     // 自动生成主键值（唯一标示值，递增）
     let newId: number = arr.length ? arr[arr.length - 1][this.primaryKey] + 1 : 1;
-
-    // 创建一个对象，保存评论内容和唯一值
-    let obj: object = {
-      ...item,
-      [this.primaryKey]: newId,
-    };
-
-    // 将数据追加到数组
-    arr.push(obj);
-
-    // 将数据存入本地
-    this.saveData(arr);
-
     // 返回新生成的id
     return newId;
   }
