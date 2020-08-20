@@ -1,7 +1,7 @@
 <template>
   <div class="memoBox">
     <div class="header">
-      <div class="title">{{memo.title}}</div>
+      <div class="title" :title="memo.title">{{memo.title}}</div>
       <div class="tool">
         <div class="edit" @click="doEdit(memo)">
           <i class="el-icon-edit"></i>
@@ -55,6 +55,7 @@ export default class MemoItem extends Vue {
   box-shadow: 1px 1px 3px 3px #000;
   border: 1px solid #eee;
   margin: 10px;
+  overflow-y: auto;
   .header {
     display: flex;
     justify-content: space-between;
@@ -64,6 +65,10 @@ export default class MemoItem extends Vue {
     .title {
       flex: 1;
       padding-right: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-all;
     }
     .tool {
       display: flex;

@@ -36,7 +36,7 @@ export default class App extends Vue {}
   height: @width*0.6;
   margin: 0 auto 40px;
   background: url(./assets/zhouyu.jpg);
-  overflow-y: scroll;
+  overflow-y: auto;
   box-shadow: 1px 1px 13px 5px #b7b75a;
 }
 </style>

@@ -9,41 +9,44 @@
       </div>
     </div>
     <div class="caozuoBox">
-      <el-dropdown class="newBox" placement="bottom">
-        <el-button>
-          新建
-          <i class="el-icon-arrow-down el-icon--right"></i>
-        </el-button>
-        <el-dropdown-menu @click.native="showEditor">
-          <el-dropdown-item>新建备忘录</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-
-      <el-dropdown class="allBox" placement="bottom">
-        <el-button>
-          全部
-          <span class="count">{{getCount(-1)}}</span>
-          <i class="el-icon-arrow-down el-icon--right"></i>
-        </el-button>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="doFilter(-1)">
+      <div class="newBox">
+        <el-dropdown placement="bottom">
+          <el-button>
+            新建
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </el-button>
+          <el-dropdown-menu @click.native="showEditor">
+            <el-dropdown-item>新建备忘录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+      <div class="allBox">
+        <el-dropdown placement="bottom">
+          <el-button>
             全部
             <span class="count">{{getCount(-1)}}</span>
-          </el-dropdown-item>
-          <el-dropdown-item @click.native="doFilter(cateEnum.Work)">
-            工作
-            <span class="count">{{getCount(cateEnum.Work)}}</span>
-          </el-dropdown-item>
-          <el-dropdown-item @click.native="doFilter(cateEnum.Life)">
-            生活
-            <span class="count">{{getCount(cateEnum.Life)}}</span>
-          </el-dropdown-item>
-          <el-dropdown-item @click.native="doFilter(cateEnum.Study)">
-            学习
-            <span class="count">{{getCount(cateEnum.Study)}}</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </el-button>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item @click.native="doFilter(-1)">
+              全部
+              <span class="count">{{getCount(-1)}}</span>
+            </el-dropdown-item>
+            <el-dropdown-item @click.native="doFilter(cateEnum.Work)">
+              工作
+              <span class="count">{{getCount(cateEnum.Work)}}</span>
+            </el-dropdown-item>
+            <el-dropdown-item @click.native="doFilter(cateEnum.Life)">
+              生活
+              <span class="count">{{getCount(cateEnum.Life)}}</span>
+            </el-dropdown-item>
+            <el-dropdown-item @click.native="doFilter(cateEnum.Study)">
+              学习
+              <span class="count">{{getCount(cateEnum.Study)}}</span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
   </div>
 </template>
@@ -110,11 +113,7 @@ export default class MenuBar extends Vue {
     justify-content: flex-end;
     align-items: center;
     .newBox {
-      width: 150px;
-    }
-
-    .allBox {
-      width: 150px;
+      margin-right: 20px;
     }
   }
 }

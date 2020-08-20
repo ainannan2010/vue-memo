@@ -32,7 +32,6 @@ export default class ItemList extends Vue {
 .listBox {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 10px;
+  padding: 10px 14px
 }
 </style>

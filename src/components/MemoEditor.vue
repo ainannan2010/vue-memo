@@ -1,7 +1,7 @@
 <template>
   <el-form :model="memo">
     <el-dialog :visible.sync="$store.state.isShow" custom-class="el-dialog-dev" :show-close="false">
-      <div slot="title" class="header">
+      <div slot="title" class="headers">
         <el-form-item class="el-form-item-dev-input" size="medium">
           <el-input v-model="memo.title" autocomplete="off" placeholder="title"></el-input>
         </el-form-item>
@@ -73,24 +73,22 @@ export default class MemoEditor extends Vue {
 }
 </script>
 
-<style lang='less' scoped>
+<style lang='less'>
 @width: 600px;
 .el-dialog-dev {
-  width: @width;
+  width: @width!important;
   height: @width*0.6;
+  .el-dialog__header,
+  .el-dialog__body {
+    padding: 0 10px;
+  }
+
+  .el-form-item {
+    margin-bottom: 0px;
+  }
 }
 
-.el-dialog__header,
-.el-dialog__body {
-  padding: 0 10px;
-}
-
-
-.el-form-item {
-  margin-bottom: 0px;
-}
-
-.header {
+.headers {
   display: flex;
   align-items: center;
   .el-form-item-dev-input {
